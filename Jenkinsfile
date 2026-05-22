@@ -108,6 +108,10 @@ for v in data.get('results', []):
     test_id = v.get('test_id')
     filename = v.get('filename', '')
     
+    # Exclude files inside the virtual environment
+    if 'venv' in filename or '.venv' in filename:
+        continue
+        
     # Only check your project files
     basename = os.path.basename(filename)
     if basename not in ['app.py', 'database.py', 'config.py']:
