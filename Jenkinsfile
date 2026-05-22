@@ -109,7 +109,8 @@ for v in data.get('results', []):
     filename = v.get('filename', '')
     
     # Only check your project files
-    if not any(f in filename for f in ['app.py', 'database.py', 'config.py']):
+    basename = os.path.basename(filename)
+    if basename not in ['app.py', 'database.py', 'config.py']:
         continue
         
     cvss = mapping.get(test_id, 5.0)
